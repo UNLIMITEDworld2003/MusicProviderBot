@@ -12,41 +12,35 @@ def _start(client, message):
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton(
-                        "➕ Add me to your Group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-                [
-                    InlineKeyboardButton(
-                        "👥 Group", url=f"https://t.me/{SUPPORT_GROUP}"), 
-                    InlineKeyboardButton(
-                        "Channel 📢", url=f"https://t.me/{UPDATES_CHANNEL}")
-                ],[
-                    InlineKeyboardButton(
-                        "🔥 Source Code 🔥", url=f"https://{SOURCE_CODE}")
-                ]
+        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
+        InlineKeyboardButton(text="💸 Donate 💸", url="paypal.me/ashirumalshan"),
+    ],[
+        InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),
+        InlineKeyboardButton(text="🎗 Share 🎗", url="https://t.me/share/url?url=https://telegra.ph/Bots-List-06-28"),
+    ],[
+        InlineKeyboardButton(text="💬 Group 💬", url="https://t.me/unlimitedworld_tm_group"),
+        InlineKeyboardButton(text="🔔 Channel 🔔", url="https://t.me/unlimitedworld_TM_channel"),
+    ],[
+        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),
+    ],
             ]
         ),
         reply_to_message_id=message.message_id
         )
 
-@Client.on_message(filters.command(["start","start@VCsMusicBot"]) & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command(["start","start@UwMusicProviderBot"]) & ~filters.private & ~filters.channel)
 async def gstart(_, message: Message):
     await message.reply_text(
-        f"""**{PROJECT_NAME} is online.**""",
+        f"""**🎙@UwMusicProvider is online.✅**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "💬 Support Chat", url=f"https://t.me/{SUPPORT_GROUP}"
-                    )
+        InlineKeyboardButton(text="💬 Support 💬", url="https://t.me/unlimitedworld_tm_group"),
+        InlineKeyboardButton(text="🔔 Updates 🔔", url="https://t.me/unlimitedworld_TM_channel"),
                 ],    
                 [    
                     InlineKeyboardButton(
-                        "🔎 Search YT", switch_inline_query_current_chat=""
-                    ),
-                    InlineKeyboardButton(
-                        "Close ❌", callback_data="close"
-                    )
+                        "🔎 Search Youtube Link 🔍", switch_inline_query_current_chat=""),
                 ]
             ]
         ),
@@ -80,35 +74,47 @@ def help_answer(client, callback_query):
 def map(pos):
     if(pos==1):
         button = [
-            [InlineKeyboardButton(text = '▶️ Next', callback_data = "help+2")]
+            [InlineKeyboardButton(text = 'Next ➡', callback_data = "help+2")]
         ]
     elif(pos==len(tr.HELP_MSG)-1):
         url = f"https://t.me/{SUPPORT_GROUP}"
         button = [
-            [InlineKeyboardButton("➕ Add me to your Group ➕", url=f"https://t.me/{BOT_USERNAME}?startgroup=true")],
-            [InlineKeyboardButton(text = '👥 Group', url=f"https://t.me/{SUPPORT_GROUP}"),
-             InlineKeyboardButton(text = 'Channel 📢', url=f"https://t.me/{UPDATES_CHANNEL}")],
-            [InlineKeyboardButton(text = '🔥 Source Code 🔥', url=f"https://{SOURCE_CODE}")],
-            [InlineKeyboardButton(text = '◀️ Back', callback_data = f"help+{pos-1}")]
+            [
+        InlineKeyboardButton(
+            text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
+        InlineKeyboardButton(text="💸 Donate 💸", url="paypal.me/ashirumalshan"),
+    ],[
+        InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),
+        InlineKeyboardButton(text="🎗 Share 🎗", url="https://t.me/share/url?url=https://telegra.ph/Bots-List-06-28"),
+    ],[
+        InlineKeyboardButton(text="💬 Group 💬", url="https://t.me/unlimitedworld_tm_group"),
+        InlineKeyboardButton(text="🔔 Channel 🔔", url="https://t.me/unlimitedworld_TM_channel"),
+    ],[
+        InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),
+    ],
+            [InlineKeyboardButton(text = '⬅ Back', callback_data = f"help+{pos-1}")]
         ]
     else:
         button = [
             [
-                InlineKeyboardButton(text = '◀️ Back', callback_data = f"help+{pos-1}"),
-                InlineKeyboardButton(text = 'Next ▶️', callback_data = f"help+{pos+1}")
+                InlineKeyboardButton(text = '⬅ Back', callback_data = f"help+{pos-1}"),
+                InlineKeyboardButton(text = 'Next ➡', callback_data = f"help+{pos+1}")
             ],
         ]
     return button
 
-@Client.on_message(filters.command(["help","help@VCsMusicBot"]) & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command(["help","help@UwMusicProviderBot"]) & ~filters.private & ~filters.channel)
 async def ghelp(_, message: Message):
     await message.reply_text(
-        f"""**Hello there! I can play music in the voice chats of telegram groups & channels.**""",
+        f"""**👋 Hello there! I can play music in the voice chats of telegram groups & channels.**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        "Click here for help", url=f"https://t.me/{BOT_USERNAME}?start"
+        InlineKeyboardButton(text="💬 Support 💬", url="https://t.me/unlimitedworld_tm_group"),
+        InlineKeyboardButton(text="🔔 Updates 🔔", url="https://t.me/unlimitedworld_TM_channel"),
+                ],
+                [InlineKeyboardButton(
+                        "💡 More Info 💡", url=f"https://t.me/{BOT_USERNAME}?start"
                     )
                 ]
             ]
