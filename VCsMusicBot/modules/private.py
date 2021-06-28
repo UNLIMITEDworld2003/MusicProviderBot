@@ -12,6 +12,7 @@ def _start(client, message):
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
             [
+                [
         InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
         InlineKeyboardButton(text="💸 Donate 💸", url="paypal.me/ashirumalshan"),
     ],[
@@ -23,7 +24,7 @@ def _start(client, message):
     ],[
         InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),
     ],
-            ]
+               ]
         ),
         reply_to_message_id=message.message_id
         )
