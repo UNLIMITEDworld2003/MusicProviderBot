@@ -22,7 +22,7 @@ from VCsMusicBot.config import DURATION_LIMIT
 from VCsMusicBot.modules.play import arq
 
 
-@Client.on_message(filters.command("song") & ~filters.channel)
+@Client.on_message(filters.command("amusic") & ~filters.channel)
 def song(client, message):
 
     user_id = message.from_user.id
@@ -59,7 +59,7 @@ def song(client, message):
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = "**🎵 Uploaded by** @VCsMusicBot."
+        rep = "**🎵Song Name:** `{thum}` \n**🎤Requested For:** `{urlissed}` \n**🔔Channel:** `{thums}` \n**🔗Link:** `{mo}` \n**📤Uploaded By: @UNLIMITEDworldTEAM**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -121,8 +121,8 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
         progress_str = "{0}{1} {2}%\n".format(
-            "".join(["🔴" for i in range(math.floor(percentage / 10))]),
-            "".join(["🔘" for i in range(10 - math.floor(percentage / 10))]),
+            "".join(["●" for i in range(math.floor(percentage / 10))]),
+            "".join(["○" for i in range(10 - math.floor(percentage / 10))]),
             round(percentage, 2),
         )
         tmp = progress_str + "{0} of {1}\nETA: {2}".format(
@@ -214,7 +214,7 @@ ydl_opts = {
     "postprocessors": [
         {
             "key": "FFmpegExtractAudio",
-            "preferredcodec": "mp3",
+            "preferredcodec": "m4a",
             "preferredquality": "192",
         }
     ],
@@ -229,7 +229,7 @@ def get_file_extension_from_url(url):
 
 # Funtion To Download Song
 async def download_song(url):
-    song_name = f"{randint(6969, 6999)}.mp3"
+    song_name = f"{randint(6969, 6999)}.m4a"
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as resp:
             if resp.status == 200:
@@ -247,21 +247,21 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(filters.command("saavn") & ~filters.edited)
+@Client.on_message(filters.command("smusic") & ~filters.edited)
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("/saavn requires an argument.")
+        await message.reply_text("/smusic requires an argument.")
         return
     if is_downloading:
         await message.reply_text(
-            "Another download is in progress, try again after sometime."
+            "🤒 Another download is in progress, try again after sometime."
         )
         return
     is_downloading = True
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
-    m = await message.reply_text("Searching...")
+    m = await message.reply_text("🔎Searching...")
     try:
         songs = await arq.saavn(query)
         if not songs.ok:
@@ -270,9 +270,9 @@ async def jssong(_, message):
         sname = songs.result[0].song
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
-        await m.edit("Downloading")
+        await m.edit("📥Downloading...")
         song = await download_song(slink)
-        await m.edit("Uploading")
+        await m.edit("📤Uploading...")
         await message.reply_audio(audio=song, title=sname, performer=ssingers)
         os.remove(song)
         await m.delete()
@@ -286,21 +286,21 @@ async def jssong(_, message):
 # Deezer Music
 
 
-@Client.on_message(filters.command("deezer") & ~filters.edited)
+@Client.on_message(filters.command("dmusic") & ~filters.edited)
 async def deezsong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("/deezer requires an argument.")
+        await message.reply_text("/dmusic requires an argument.")
         return
     if is_downloading:
         await message.reply_text(
-            "Another download is in progress, try again after sometime."
+            "🤒 Another download is in progress, try again after sometime."
         )
         return
     is_downloading = True
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
-    m = await message.reply_text("Searching...")
+    m = await message.reply_text("🔎Searching...")
     try:
         songs = await arq.deezer(query, 1)
         if not songs.ok:
@@ -309,9 +309,9 @@ async def deezsong(_, message):
         title = songs.result[0].title
         url = songs.result[0].url
         artist = songs.result[0].artist
-        await m.edit("Downloading")
+        await m.edit("📥Downloading...")
         song = await download_song(url)
-        await m.edit("Uploading")
+        await m.edit("📤Uploading...")
         await message.reply_audio(audio=song, title=title, performer=artist)
         os.remove(song)
         await m.delete()
@@ -322,12 +322,12 @@ async def deezsong(_, message):
     is_downloading = False
 
 
-@Client.on_message(filters.command(["vsong", "video"]))
+@Client.on_message(filters.command(["vmusic", "yt"]))
 async def ytmusic(client, message: Message):
     global is_downloading
     if is_downloading:
         await message.reply_text(
-            "Another download is in progress, try again after sometime."
+            "🤒 Another download is in progress, try again after sometime."
         )
         return
 
@@ -384,7 +384,7 @@ async def ytmusic(client, message: Message):
 
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
-    capy = f"**Video Name ➠** `{thum}` \n**Requested For :** `{urlissed}` \n**Channel :** `{thums}` \n**Link :** `{mo}`"
+    capy = f"**🎞Video Name:** `{thum}` \n**🎤Requested For:** `{urlissed}` \n**🔔Channel:** `{thums}` \n**🔗Link:** `{mo}` \n**📤Uploaded By: @UNLIMITEDworldTEAM**"
     await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
@@ -397,7 +397,7 @@ async def ytmusic(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"`Uploading {urlissed} Song From YouTube Music!`",
+            f"`📤Uploading {urlissed} Song From YouTube Music!`",
             file_stark,
         ),
     )
