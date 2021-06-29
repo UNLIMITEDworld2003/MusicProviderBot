@@ -17,7 +17,7 @@ async def pmPermit(client: USER, message: Message):
                 return
             await USER.send_message(
                 message.chat.id,
-                "👋 Hi there, This is a music assistant service of @UwMusicProviderBot.\n\n ❗️ Rules:\n   `- No chatting allowed.`\n   `- No spam allowed.` \n\n 👉 **SEND GROUP INVITE LINK OR USERNAME IF USERBOT CAN'T JOIN YOUR GROUP.**\n\n ⚠️ **Disclamer:**\n __If you are sending a message here it means admin from @UwMusicProvider will see your message and join chat.__\n    `- Don't add this user to secret groups.`\n   `- Don't Share private info here.`\n\n**👤Developer: @ASHIRUMALSHAN 🇱🇰.**\n⚡Powered By: @UNLIMITEDworldTEAM.**\n\n**💡More Info: https://telegra.ph/Music-Provider-Bot-05-18."        )
+                "👋 Hi there, This is a music assistant service of @UwMusicProviderBot.\n\n ❗️ Rules:\n   `- No chatting allowed.`\n   `- No spam allowed.` \n\n 👉 **SEND GROUP INVITE LINK OR USERNAME IF USERBOT CAN'T JOIN YOUR GROUP.**\n\n ⚠️ **Disclamer:**\n __If you are sending a message here it means admin from @UwMusicProvider will see your message and join chat.__\n    `- Don't add this user to secret groups.`\n   `- Don't Share private info here.`\n\n**👤Developer: @ASHIRUMALSHAN 🇱🇰**\n⚡Powered By: @UNLIMITEDworldTEAM**\n\n**💡More Info: https://telegra.ph/Music-Provider-Bot-05-18**"        )
             return
 
     
