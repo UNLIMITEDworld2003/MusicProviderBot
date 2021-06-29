@@ -12,18 +12,20 @@ def _start(client, message):
         parse_mode="markdown",
         reply_markup=InlineKeyboardMarkup(
             [
-                [
+     [
         InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
-        InlineKeyboardButton(text="💸 Donate 💸", url="paypal.me/ashirumalshan"),
-    ],[
-        InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),
+        InlineKeyboardButton(text="💸 Donate 💸", url="https://paypal.me/ashirumalshan"),
         InlineKeyboardButton(text="🎗 Share 🎗", url="https://t.me/share/url?url=https://telegra.ph/Bots-List-06-28"),
-    ],[
+   ],[
+        InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),
+        InlineKeyboardButton(text="📒 User Guide 📒", url="https://telegra.ph/Music-Provider-Bot-05-18"),
+   ],[
+        InlineKeyboardButton(text="📺 Youtube 📺", url="https://youtube.com/channel/UCDXza1eZJDUVSO-twfX9V5g/join"),
         InlineKeyboardButton(text="💬 Group 💬", url="https://t.me/unlimitedworld_tm_group"),
         InlineKeyboardButton(text="🔔 Channel 🔔", url="https://t.me/unlimitedworld_TM_channel"),
-    ],[
+   ],[
         InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),
-    ],
+   ],
                ]
         ),
         reply_to_message_id=message.message_id
@@ -32,7 +34,7 @@ def _start(client, message):
 @Client.on_message(filters.command(["start","start@UwMusicProviderBot"]) & ~filters.private & ~filters.channel)
 async def gstart(_, message: Message):
     await message.reply_text(
-        f"""**🎙@UwMusicProvider is online.✅**""",
+        f"""**🎙 @UwMusicProvider is online. ✅**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
@@ -81,18 +83,19 @@ def map(pos):
         url = f"https://t.me/{SUPPORT_GROUP}"
         button = [
             [
-        InlineKeyboardButton(
-            text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
-        InlineKeyboardButton(text="💸 Donate 💸", url="paypal.me/ashirumalshan"),
-    ],[
-        InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),
+        InlineKeyboardButton(text="👤 Developer 👤", url="https://t.me/ASHIRUMALSHAN"),
+        InlineKeyboardButton(text="💸 Donate 💸", url="https://paypal.me/ashirumalshan"),
         InlineKeyboardButton(text="🎗 Share 🎗", url="https://t.me/share/url?url=https://telegra.ph/Bots-List-06-28"),
-    ],[
+   ],[
+        InlineKeyboardButton(text="🤖 Bots List 🤖", url="https://t.me/unlimitedworld_TM_channel/1086"),
+        InlineKeyboardButton(text="📒 User Guide 📒", url="https://telegra.ph/Music-Provider-Bot-05-18"),
+   ],[
+        InlineKeyboardButton(text="📺 Youtube 📺", url="https://youtube.com/channel/UCDXza1eZJDUVSO-twfX9V5g/join"),
         InlineKeyboardButton(text="💬 Group 💬", url="https://t.me/unlimitedworld_tm_group"),
         InlineKeyboardButton(text="🔔 Channel 🔔", url="https://t.me/unlimitedworld_TM_channel"),
-    ],[
+   ],[
         InlineKeyboardButton(text="➕ Add Me To Your Group ➕", url="t.me/UwMusicProviderBot?startgroup=true"),
-    ],
+   ],
             [InlineKeyboardButton(text = '⬅ Back', callback_data = f"help+{pos-1}")]
         ]
     else:
@@ -107,7 +110,7 @@ def map(pos):
 @Client.on_message(filters.command(["help","help@UwMusicProviderBot"]) & ~filters.private & ~filters.channel)
 async def ghelp(_, message: Message):
     await message.reply_text(
-        f"""**👋 Hello there! I can play music in the voice chats of telegram groups & channels.**""",
+        f"""**👋 Hello there! I can play music in the voice chats of telegram groups & channels. 🎶**""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
