@@ -33,7 +33,7 @@ def song(client, message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    m = message.reply("🔎 Finding the song...")
+    m = message.reply("`🔎Searching the song...`")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -53,7 +53,7 @@ def song(client, message):
         m.edit("❌ Found Nothing.\n\nTry another keywork or maybe spell it properly.")
         print(str(e))
         return
-    m.edit("Downloading the song ")
+    m.edit("`📥Downloading the song...` ")
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
@@ -74,7 +74,7 @@ def song(client, message):
         )
         m.delete()
     except Exception as e:
-        m.edit("❌ Error")
+        m.edit("❌ __Error__ ❌")
         print(e)
 
     try:
@@ -131,7 +131,7 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
         if file_name:
             try:
                 await message.edit(
-                    "{}\n**File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
+                    "{}\n**📂File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
                 )
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -261,7 +261,7 @@ async def jssong(_, message):
     is_downloading = True
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
-    m = await message.reply_text("🔎Searching...")
+    m = await message.reply_text("`🔎Searching...`")
     try:
         songs = await arq.saavn(query)
         if not songs.ok:
@@ -270,9 +270,9 @@ async def jssong(_, message):
         sname = songs.result[0].song
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
-        await m.edit("📥Downloading...")
+        await m.edit("`📥Downloading...`")
         song = await download_song(slink)
-        await m.edit("📤Uploading...")
+        await m.edit("`📤Uploading...`")
         await message.reply_audio(audio=song, title=sname, performer=ssingers)
         os.remove(song)
         await m.delete()
@@ -300,7 +300,7 @@ async def deezsong(_, message):
     is_downloading = True
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
-    m = await message.reply_text("🔎Searching...")
+    m = await message.reply_text("`🔎Searching...`")
     try:
         songs = await arq.deezer(query, 1)
         if not songs.ok:
@@ -309,9 +309,9 @@ async def deezsong(_, message):
         title = songs.result[0].title
         url = songs.result[0].url
         artist = songs.result[0].artist
-        await m.edit("📥Downloading...")
+        await m.edit("`📥Downloading...`")
         song = await download_song(url)
-        await m.edit("📤Uploading...")
+        await m.edit("`📤Uploading...`")
         await message.reply_audio(audio=song, title=title, performer=artist)
         os.remove(song)
         await m.delete()
@@ -322,7 +322,7 @@ async def deezsong(_, message):
     is_downloading = False
 
 
-@Client.on_message(filters.command(["vmusic", "yt"]))
+@Client.on_message(filters.command(["vmusic", "ytvideo"]))
 async def ytmusic(client, message: Message):
     global is_downloading
     if is_downloading:
