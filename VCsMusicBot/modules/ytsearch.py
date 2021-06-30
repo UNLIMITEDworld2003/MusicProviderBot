@@ -36,3 +36,18 @@ async def ytsearch(_, message: Message):
         await m.edit(text, disable_web_page_preview=True)
     except Exception as e:
         await message.reply_text(str(e))
+
+@Client.on_message(filters.command(["ytsearch"]) & ~filters.private & ~filters.channel)
+async def gstart(_, message: Message):
+    await message.reply_text(
+        f"""**🧐 Click the button below to get a link to a YouTube video from the inline mode.**""",
+        reply_markup=InlineKeyboardMarkup(
+            [   
+                [    
+                    InlineKeyboardButton(
+                        "🔎 Search Youtube Link 🔍", switch_inline_query_current_chat=""),
+                ]
+            ]
+        ),
+    )       
+
