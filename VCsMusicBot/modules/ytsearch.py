@@ -22,11 +22,11 @@ async def ytsearch(_, message: Message):
             await message.reply_text("/search needs an argument!")
             return
         query = message.text.split(None, 1)[1]
-        m = await message.reply_text("Searching....")
-        results = YoutubeSearch(query, max_results=4).to_dict()
+        m = await message.reply_text("`🔎Searching...`")
+        results = YoutubeSearch(query, max_results=5).to_dict()
         i = 0
         text = ""
-        while i < 4:
+        while i < 5:
             text += f"Title - {results[i]['title']}\n"
             text += f"Duration - {results[i]['duration']}\n"
             text += f"Views - {results[i]['views']}\n"
