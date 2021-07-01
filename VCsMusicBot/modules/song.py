@@ -50,7 +50,7 @@ def song(client, message):
         results[0]["views"]
 
     except Exception as e:
-        m.edit("❌ Found Nothing.\n\nTry another keywork or maybe spell it properly.")
+        m.edit("❓ __Found Nothing__ ❓\n\n`Try another keywork or maybe spell it properly.`")
         print(str(e))
         return
     m.edit("`📥 Downloading the song...` ")
@@ -59,7 +59,7 @@ def song(client, message):
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = "__🎵Uploaded By: @UwMusicProviderBot via Youtube.__ \n\n**© @UNLIMITEDworldTEAM**"
+        rep = "__🎵Uploaded By: @UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -251,7 +251,7 @@ def time_to_seconds(time):
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("/jmusic requires an argument.")
+        await message.reply_text("__/jmusic requires a song name.__")
         return
     if is_downloading:
         await message.reply_text(
@@ -273,7 +273,7 @@ async def jssong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(slink)
         await m.edit("`📤 Uploading...`")
-        rep = "__🎵Uploaded By: @UwMusicProviderBot via Jiosaavn.__ \n\n**© @UNLIMITEDworldTEAM**"
+        rep = "__🎵Uploaded By: @UwMusicProviderBot via Jiosaavn.__ \n**© @UNLIMITEDworldTEAM**"
         await message.reply_audio(audio=song, title=sname, performer=ssingers, caption=rep,)
         os.remove(song)
         await m.delete()
@@ -291,7 +291,7 @@ async def jssong(_, message):
 async def deezsong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("/dmusic requires an argument.")
+        await message.reply_text("__/dmusic requires a song name.__")
         return
     if is_downloading:
         await message.reply_text(
@@ -313,7 +313,7 @@ async def deezsong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(url)
         await m.edit("`📤 Uploading...`")
-        rep = "__🎵Uploaded By: @UwMusicProviderBot via Deezer.__ \n\n**© @UNLIMITEDworldTEAM**"
+        rep = "__🎵Uploaded By: @UwMusicProviderBot via Deezer.__ \n**© @UNLIMITEDworldTEAM**"
         await message.reply_audio(audio=song, title=title, performer=artist, caption=rep)
         os.remove(song)
         await m.delete()
@@ -386,7 +386,7 @@ async def ytmusic(client, message: Message):
 
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
-    capy = f"**🎞Video Name:** `{thum}` \n**🎤Requested For:** `{urlissed}` \n**🔔Channel:** `{thums}` \n**🔗Link:** `{mo}` \n**📤Uploaded By: @UNLIMITEDworldTEAM**"
+    capy = f"**🎞Video Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n__🎬Uploaded By: @UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
     await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
