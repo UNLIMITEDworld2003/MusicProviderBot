@@ -59,7 +59,7 @@ def song(client, message):
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = "__🎵Uploaded By: @UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
+        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -131,7 +131,7 @@ async def progress(current, total, message, start, type_of_ps, file_name=None):
         if file_name:
             try:
                 await message.edit(
-                    "{}\n**📂File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
+                    "{}\n**📂 File Name:** `{}`\n{}".format(type_of_ps, file_name, tmp)
                 )
             except FloodWait as e:
                 await asyncio.sleep(e.x)
@@ -273,7 +273,7 @@ async def jssong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(slink)
         await m.edit("`📤 Uploading...`")
-        rep = "__🎵Uploaded By: @UwMusicProviderBot via Jiosaavn.__ \n**© @UNLIMITEDworldTEAM**"
+        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via Jiosaavn.__ \n**© @UNLIMITEDworldTEAM**"
         await message.reply_audio(audio=song, title=sname, performer=ssingers, caption=rep,)
         os.remove(song)
         await m.delete()
@@ -313,7 +313,7 @@ async def deezsong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(url)
         await m.edit("`📤 Uploading...`")
-        rep = "__🎵Uploaded By: @UwMusicProviderBot via Deezer.__ \n**© @UNLIMITEDworldTEAM**"
+        rep = "**🎵Uploaded By:** __@UwMusicProviderBot via Deezer.__ \n**© @UNLIMITEDworldTEAM**"
         await message.reply_audio(audio=song, title=title, performer=artist, caption=rep)
         os.remove(song)
         await m.delete()
@@ -386,7 +386,7 @@ async def ytmusic(client, message: Message):
 
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
-    capy = f"**🎞Video Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n__🎬Uploaded By: @UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
+    capy = f"**🎞Video Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n**🎬Uploaded By:** __@UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
     await client.send_video(
         message.chat.id,
         video=open(file_stark, "rb"),
