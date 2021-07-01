@@ -273,7 +273,7 @@ async def jssong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(slink)
         await m.edit("`📤 Uploading...`")
-        rep = "**🎵Song Name:** `{sname}`
+        rep = "**🎵Song Name:** `{sname}`"
         await message.reply_audio(audio=song, title=sname, performer=ssingers, caption=rep,)
         os.remove(song)
         await m.delete()
@@ -313,7 +313,7 @@ async def deezsong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(url)
         await m.edit("`📤 Uploading...`")
-        rep = "**🎵Song Name:** `{title}`
+        rep = "**🎵Song Name:** `{title}`"
         await message.reply_audio(audio=song, title=title, performer=artist, caption=rep)
         os.remove(song)
         await m.delete()
