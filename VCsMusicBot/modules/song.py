@@ -22,7 +22,7 @@ from VCsMusicBot.config import DURATION_LIMIT
 from VCsMusicBot.modules.play import arq
 
 
-@Client.on_message(filters.command("amusic") & ~filters.channel)
+@Client.on_message(filters.command(["amusic" ,"ytsong"]) & ~filters.channel)
 def song(client, message):
 
     user_id = message.from_user.id
@@ -33,7 +33,7 @@ def song(client, message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    m = message.reply("`🔎Searching the song...`")
+    m = message.reply("`🔎 Searching the song...`")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -53,13 +53,13 @@ def song(client, message):
         m.edit("❌ Found Nothing.\n\nTry another keywork or maybe spell it properly.")
         print(str(e))
         return
-    m.edit("`📥Downloading the song...` ")
+    m.edit("`📥 Downloading the song...` ")
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = "**🎵Song Name:** `{title}` \n**🎤Requested For:** `{thumb}` \n**🔔Channel:** `{results}` \n**🔗Link:** `{link}` \n**📤Uploaded By: @UNLIMITEDworldTEAM**"
+        rep = "**🎵Song Name:** `{title}` \n**🎤Requested For:** `{query}` \n**🔔Channel:** `{results}` \n**🔗Link:** `{link}` \n**📤Uploaded By: @UNLIMITEDworldTEAM**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -247,21 +247,21 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(filters.command("smusic") & ~filters.edited)
+@Client.on_message(filters.command("jmusic") & ~filters.edited)
 async def jssong(_, message):
     global is_downloading
     if len(message.command) < 2:
-        await message.reply_text("/smusic requires an argument.")
+        await message.reply_text("/jmusic requires an argument.")
         return
     if is_downloading:
         await message.reply_text(
-            "🤒 Another download is in progress, try again after sometime."
+            "🤒 __Another download is in progress, try again after sometime.__"
         )
         return
     is_downloading = True
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
-    m = await message.reply_text("`🔎Searching...`")
+    m = await message.reply_text("`🔎 Searching...`")
     try:
         songs = await arq.saavn(query)
         if not songs.ok:
@@ -270,10 +270,11 @@ async def jssong(_, message):
         sname = songs.result[0].song
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
-        await m.edit("`📥Downloading...`")
+        await m.edit("`📥 Downloading...`")
         song = await download_song(slink)
-        await m.edit("`📤Uploading...`")
-        await message.reply_audio(audio=song, title=sname, performer=ssingers)
+        rep = "**🎵Song Name:** `{title}`
+        await m.edit("`📤 Uploading...`")
+        await message.reply_audio(audio=song, title=sname, performer=ssingers, caption=rep,)
         os.remove(song)
         await m.delete()
     except Exception as e:
@@ -294,13 +295,13 @@ async def deezsong(_, message):
         return
     if is_downloading:
         await message.reply_text(
-            "🤒 Another download is in progress, try again after sometime."
+            "🤒 __Another download is in progress, try again after sometime.__"
         )
         return
     is_downloading = True
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
-    m = await message.reply_text("`🔎Searching...`")
+    m = await message.reply_text("`🔎 Searching...`")
     try:
         songs = await arq.deezer(query, 1)
         if not songs.ok:
@@ -309,10 +310,11 @@ async def deezsong(_, message):
         title = songs.result[0].title
         url = songs.result[0].url
         artist = songs.result[0].artist
-        await m.edit("`📥Downloading...`")
+        await m.edit("`📥 Downloading...`")
         song = await download_song(url)
-        await m.edit("`📤Uploading...`")
-        await message.reply_audio(audio=song, title=title, performer=artist)
+        rep = "**🎵Song Name:** `{title}`
+        await m.edit("`📤 Uploading...`")
+        await message.reply_audio(audio=song, title=title, performer=artist, caption=rep)
         os.remove(song)
         await m.delete()
     except Exception as e:
@@ -327,17 +329,17 @@ async def ytmusic(client, message: Message):
     global is_downloading
     if is_downloading:
         await message.reply_text(
-            "🤒 Another download is in progress, try again after sometime."
+            "🤒 __Another download is in progress, try again after sometime.__"
         )
         return
 
     urlissed = get_text(message)
 
     pablo = await client.send_message(
-        message.chat.id, f"`Getting {urlissed} From Youtube Servers. Please Wait.`"
+        message.chat.id, f"`🔎 Searching the video...`"
     )
     if not urlissed:
-        await pablo.edit("Invalid Command Syntax, Please Check Help Menu To Know More!")
+        await pablo.edit("❗ __Invalid Command Syntax, Please Check Help Menu To Know More!__")
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
@@ -371,7 +373,7 @@ async def ytmusic(client, message: Message):
 
             if duration > DURATION_LIMIT:
                 await pablo.edit(
-                    f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {duration} minute(s)"
+                    f"🥵 __Videos longer than {DURATION_LIMIT} minute(s) aren't allowed, the provided video is {duration} minute(s).__"
                 )
                 is_downloading = False
                 return
@@ -397,7 +399,7 @@ async def ytmusic(client, message: Message):
         progress_args=(
             pablo,
             c_time,
-            f"`📤Uploading {urlissed} Song From YouTube Music!`",
+            f"`📤 Uploading {urlissed} Song From YouTube Music!`",
             file_stark,
         ),
     )
