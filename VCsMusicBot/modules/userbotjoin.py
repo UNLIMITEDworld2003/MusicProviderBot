@@ -14,7 +14,7 @@ async def addchannel(client, message):
         invitelink = await client.export_chat_invite_link(chid)
     except:
         await message.reply_text(
-            "<b>Add me as admin of yor group first</b>",
+            "<b>🙆‍♂️ Add me as admin of yor group first.</b>",
         )
         return
 
@@ -25,10 +25,10 @@ async def addchannel(client, message):
 
     try:
         await USER.join_chat(invitelink)
-        await USER.send_message(message.chat.id, "I joined here as you requested")
+        await USER.send_message(message.chat.id, "🤷‍♂️ I joined here as you requested")
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>helper already in your chat</b>",
+            "<b>💁‍♂️ Assistant of @UwMusicProviderBot's already in your chat.</b>",
         )
     except Exception as e:
         print(e)
@@ -38,7 +38,7 @@ async def addchannel(client, message):
         )
         return
     await message.reply_text(
-        "<b>helper userbot joined your chat</b>",
+        "<b>🙋‍♂️ Assistant of @UwMusicProviderbot's joined your chat.</b>",
     )
 
 
@@ -59,15 +59,15 @@ async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
         failed=0
-        lol = await message.reply("Assistant Leaving all chats")
+        lol = await message.reply("__Assistant Leaving all chats.__")
         async for dialog in USER.iter_dialogs():
             try:
                 await USER.leave_chat(dialog.chat.id)
                 left = left+1
-                await lol.edit(f"Assistant leaving... Left: {left} chats. Failed: {failed} chats.")
+                await lol.edit(f"`⚠ Assistant leaving...` Left: {left} chats. Failed: {failed} chats.")
             except:
                 failed=failed+1
-                await lol.edit(f"Assistant leaving... Left: {left} chats. Failed: {failed} chats.")
+                await lol.edit(f"`⚠ Assistant leaving...` Left: {left} chats. Failed: {failed} chats.")
             await asyncio.sleep(0.7)
         await client.send_message(message.chat.id, f"Left {left} chats. Failed {failed} chats.")
     
@@ -88,7 +88,7 @@ async def addcchannel(client, message):
         invitelink = await client.export_chat_invite_link(chid)
     except:
         await message.reply_text(
-            "<b>Add me as admin of yor channel first</b>",
+            "<b>🙆‍♂️ Add me as admin of yor channel first.</b>",
         )
         return
 
@@ -99,10 +99,10 @@ async def addcchannel(client, message):
 
     try:
         await USER.join_chat(invitelink)
-        await USER.send_message(message.chat.id, "I joined here as you requested")
+        await USER.send_message(message.chat.id, "🤷‍♂️ I joined here as you requested.")
     except UserAlreadyParticipant:
         await message.reply_text(
-            "<b>helper already in your channel</b>",
+            "<b>💁‍♂️ Assistant of @UwMusicProviderBot's already in your channel.</b>",
         )
         return
     except Exception as e:
@@ -113,6 +113,6 @@ async def addcchannel(client, message):
         )
         return
     await message.reply_text(
-        "<b>helper userbot joined your channel</b>",
+        "<b>🙋‍♂️ Assistant of @UwMusicProviderBot's joined your channel.</b>",
     )
     
