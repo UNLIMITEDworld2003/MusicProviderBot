@@ -59,7 +59,7 @@ def song(client, message):
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = "**🎵Song Name:** `{title}` \n**🎤Requested For:** `{query}` \n**🔔Channel:** `{results}` \n**🔗Link:** `{link}` \n**📤Uploaded By: @UNLIMITEDworldTEAM**"
+        rep = "__🎵Uploaded By: @UwMusicProviderBot via Youtube.__ \n\n**© @UNLIMITEDworldTEAM**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -273,7 +273,7 @@ async def jssong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(slink)
         await m.edit("`📤 Uploading...`")
-        rep = "**🎵Song Name:** `{sname}`"
+        rep = "__🎵Uploaded By: @UwMusicProviderBot via Jiosaavn.__ \n\n**© @UNLIMITEDworldTEAM**"
         await message.reply_audio(audio=song, title=sname, performer=ssingers, caption=rep,)
         os.remove(song)
         await m.delete()
@@ -313,7 +313,7 @@ async def deezsong(_, message):
         await m.edit("`📥 Downloading...`")
         song = await download_song(url)
         await m.edit("`📤 Uploading...`")
-        rep = "**🎵Song Name:** `{title}`"
+        rep = "__🎵Uploaded By: @UwMusicProviderBot via Deezer.__ \n\n**© @UNLIMITEDworldTEAM**"
         await message.reply_audio(audio=song, title=title, performer=artist, caption=rep)
         os.remove(song)
         await m.delete()
