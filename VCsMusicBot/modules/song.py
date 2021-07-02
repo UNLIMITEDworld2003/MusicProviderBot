@@ -444,7 +444,7 @@ async def ytmusic(client, message: Message):
         "prefer_ffmpeg": True,
         "geo_bypass": True,
         "nocheckcertificate": True,
-        "postprocessors": [{"key": "FFmpegAudioConvertor", "preferedformat": "m4a"}],
+        "postprocessors": [{"key": "FFmpegVideoConvertor", "preferedformat": "m4a"}],
         "outtmpl": "%(id)s.m4a",
         "logtostderr": False,
         "quiet": True,
@@ -471,13 +471,14 @@ async def ytmusic(client, message: Message):
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.m4a"
     capy = f"**🎧Song Name:** [{thum}]({mo}) \n\n**🎤Requested For:** `{urlissed}` \n\n**🎵Uploaded By:** __@UwMusicProviderBot via Youtube.__ \n**© @UNLIMITEDworldTEAM**"
-    await client.reply_audio(
+    await client.send_audio(
         message.chat.id,
         audio=open(file_stark, "rb"),
         duration=int(ytdl_data["duration"]),
         file_name=str(ytdl_data["title"]),
         thumb=sedlyf,
         caption=capy,
+        audio=song,
         supports_streaming=True,
         progress=progress,
         progress_args=(
