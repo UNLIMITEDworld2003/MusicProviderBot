@@ -478,7 +478,6 @@ async def ytmusic(client, message: Message):
         file_name=str(ytdl_data["title"]),
         thumb=sedlyf,
         caption=capy,
-        audio=song,
         supports_streaming=True,
         progress=progress,
         progress_args=(
