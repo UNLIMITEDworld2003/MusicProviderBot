@@ -7,7 +7,7 @@ import youtube_dl
 from youtube_search import YoutubeSearch
 import requests
 
-from config import BOT_NAME as Bn
+from config import VCsMusicBot
 from helpers.filters import command, other_filters
 from helpers.decorators import errors
 
