@@ -1,16 +1,3 @@
-import os
-
-from pyrogram import Client
-from pyrogram.types import Message, Voice
-
-import youtube_dl
-from youtube_search import YoutubeSearch
-import requests
-
-from config import VCsMusicBot
-from helpers.filters import command, other_filters
-from helpers.decorators import errors
-
 @Client.on_message(command("song") & other_filters)
 @errors
 async def a(client, message: Message):
