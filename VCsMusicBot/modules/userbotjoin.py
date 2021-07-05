@@ -25,7 +25,7 @@ async def addchannel(client, message):
 
     try:
         await USER.join_chat(invitelink)
-        await USER.send_message(message.chat.id, "🤷‍♂️ I joined here as you requested")
+        await USER.send_message(message.chat.id, "<b>🤷‍♂️ I joined here as you requested.</b>")
     except UserAlreadyParticipant:
         await message.reply_text(
             "<b>💁‍♂️ Assistant of @UwMusicProviderBot's already in your chat.</b>",
@@ -49,7 +49,7 @@ async def rem(USER, message):
         await USER.leave_chat(message.chat.id)
     except:
         await message.reply_text(
-            f"<b>User couldn't leave your group! May be floodwaits."
+            f"<b>🥵 User couldn't leave your group! May be floodwaits."
             "\n\nOr manually kick me from to your Group</b>",
         )
         return
@@ -59,7 +59,7 @@ async def bye(client, message):
     if message.from_user.id in SUDO_USERS:
         left=0
         failed=0
-        lol = await message.reply("__Assistant Leaving all chats.__")
+        lol = await message.reply("__😵 Assistant Leaving all chats.__")
         async for dialog in USER.iter_dialogs():
             try:
                 await USER.leave_chat(dialog.chat.id)
@@ -81,7 +81,7 @@ async def addcchannel(client, message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("Is chat even linked")
+      await message.reply("<b>❓ This group does not have a linked channel.</b>")
       return    
     chat_id = chid
     try:
@@ -99,7 +99,7 @@ async def addcchannel(client, message):
 
     try:
         await USER.join_chat(invitelink)
-        await USER.send_message(message.chat.id, "🤷‍♂️ I joined here as you requested.")
+        await USER.send_message(message.chat.id, "<b>🤷‍♂️ I joined here as you requested.</b>")
     except UserAlreadyParticipant:
         await message.reply_text(
             "<b>💁‍♂️ Assistant of @UwMusicProviderBot's already in your channel.</b>",
